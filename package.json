@@ -1,0 +1,38 @@
+{
+  "name": "@iresults/styles-typo3",
+  "version": "0.1.0",
+  "description": "Sass library with TYPO3 mixins",
+  "dependencies": {
+    "@iresults/styles-lib": "^0.1.0"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "bin/test.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iresults/styles-typo3.git"
+  },
+  "keywords": [
+    "scss"
+  ],
+  "contributors": [
+    {
+      "name": "Andreas Thurnheer-Meier",
+      "email": "tma@iresults.li",
+      "url": "https://www.iresults.li/"
+    },
+    {
+      "name": "Daniel Corn",
+      "email": "cod@iresults.li",
+      "url": "https://www.iresults.li"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iresults/styles-typo3/issues"
+  },
+  "homepage": "https://github.com/iresults/styles-typo3#readme"
+}

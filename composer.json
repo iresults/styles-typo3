@@ -1,0 +1,21 @@
+{
+  "name": "iresults/styles-typo3",
+  "description": "Sass library with TYPO3 mixins",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Andreas Thurnheer-Meier",
+      "email": "tma@iresults.li",
+      "homepage": "https://www.iresults.li/"
+    },
+    {
+      "name": "Daniel Corn",
+      "email": "cod@iresults.li",
+      "homepage": "https://www.iresults.li"
+    }
+  ],
+  "require": {
+    "iresults/styles-lib": "^0.1.0"
+  }
+}

@@ -1,0 +1,92 @@
+@mixin init($gap, $debug: true) {
+    .frame-type-image,
+    .frame-type-textpic {
+        @if $debug {
+            position: relative;
+            border: 2px solid green;
+
+            &:has(> .ce-intext:not(.ce-nowrap)) {
+                border: 2px solid orange;
+            }
+
+            .ce-textpic::before {
+                position: absolute;
+                background: green;
+                opacity: 0.6;
+                color: white;
+                padding: 4px;
+                content: "Textpic class: " attr(class);
+                right: 0;
+                top: 0;
+            }
+
+            .ce-intext:not(.ce-nowrap)::before {
+                background: orange;
+            }
+        }
+
+        .ce-gallery .ce-row {
+            display: flex;
+            gap: $gap;
+        }
+
+        .ce-gallery {
+            display: flex;
+            flex-flow: column;
+        }
+
+        .ce-center .ce-gallery {
+            align-items: center;
+        }
+
+        .ce-left .ce-gallery {
+            align-items: flex-start;
+        }
+
+        .ce-right .ce-gallery {
+            align-items: flex-end;
+        }
+
+        // USE WITH CAUTION
+        // Text floating around the images
+        .ce-intext:not(.ce-nowrap) {
+            // Clear the float after the columns
+            &::after {
+                display: block;
+                clear: both;
+                content: "";
+            }
+
+            .ce-bodytext,
+            .ce-gallery {
+                display: inline;
+            }
+
+            &.ce-left .ce-gallery {
+                float: left;
+                margin-right: $gap;
+            }
+
+            &.ce-right .ce-gallery {
+                float: right;
+                margin-left: $gap;
+            }
+        }
+
+        // Images beside the text
+        .ce-intext.ce-nowrap {
+            display: flex;
+            gap: $gap;
+
+            &.ce-right {
+                .ce-bodytext {
+                    order: 1;
+                }
+
+                .ce-gallery {
+                    order: 2;
+                }
+            }
+        }
+    }
+}

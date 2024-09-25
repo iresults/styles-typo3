@@ -1,0 +1,2 @@
+@use "../../styles-typo3/gallery" as gallery;
+@include gallery.init(1rem);
