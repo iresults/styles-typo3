@@ -1,12 +1,24 @@
-@mixin init($gap, $debug: false) {
-    .frame-type-image,
-    .frame-type-textpic {
-        @if $debug {
+/// Initialize the grid system for galleries
+///
+/// @param {Length} $gap                      - Property to apply the width to
+/// @param {Length} $text-float-breakpoint    - Minimum breakpoint at which text and images will be displayed side by side
+/// @param {Length} $gallery-float-breakpoint - Minimum breakpoint at which images will be displayed in columns
+/// @param {Bool} $debug [false]              - Enable debugging outline and helpers
+@mixin init(
+    $gap,
+    $text-float-breakpoint,
+    $gallery-float-breakpoint,
+    $debug: false
+) {
+    @if $debug {
+        .frame-type-image,
+        .frame-type-textpic {
             position: relative;
-            border: 2px solid green;
+            outline: 2px solid rgba(green, 0.5);
+            outline-offset: -1px;
 
             &:has(> .ce-intext:not(.ce-nowrap)) {
-                border: 2px solid orange;
+                outline-color: rgba(orange, 0.5);
             }
 
             .ce-textpic::before {
@@ -24,41 +36,65 @@
                 background: orange;
             }
         }
+    }
 
-        .ce-gallery .ce-row {
-            display: flex;
-            gap: $gap;
+    .ce-gallery .ce-row {
+        display: flex;
+        gap: $gap;
+        flex-flow: column;
+
+        @media screen and (min-width: $gallery-float-breakpoint) {
+            flex-flow: row;
         }
+    }
 
-        .ce-gallery,
-        .ce-outer > .ce-inner {
-            display: flex;
-            gap: $gap;
-            flex-flow: column;
-        }
+    .ce-gallery,
+    .ce-outer > .ce-inner {
+        display: flex;
+        gap: $gap;
+        flex-flow: column;
+    }
 
-        .ce-center .ce-gallery {
+    .ce-gallery {
+        align-items: center;
+    }
+
+    .ce-center .ce-gallery {
+        @media screen and (min-width: $gallery-float-breakpoint) {
             align-items: center;
         }
+    }
 
-        .ce-left .ce-gallery {
+    .ce-left .ce-gallery {
+        @media screen and (min-width: $gallery-float-breakpoint) {
             align-items: flex-start;
         }
+    }
 
-        .ce-right .ce-gallery {
+    .ce-right .ce-gallery {
+        @media screen and (min-width: $gallery-float-breakpoint) {
             align-items: flex-end;
         }
+    }
 
-        // USE WITH CAUTION
-        // Text floating around the images
-        .ce-intext:not(.ce-nowrap) {
-            // Clear the float after the columns
-            &::after {
-                display: block;
-                clear: both;
-                content: "";
-            }
+    .ce-above,
+    .ce-below {
+        display: flex;
+        gap: $gap;
+        flex-flow: column;
+    }
 
+    // USE WITH CAUTION
+    // Text floating around the images
+    .ce-intext:not(.ce-nowrap) {
+        // Clear the float after the columns
+        &::after {
+            display: block;
+            clear: both;
+            content: "";
+        }
+
+        @media screen and (min-width: $text-float-breakpoint) {
             .ce-bodytext,
             .ce-gallery {
                 display: inline;
@@ -74,20 +110,25 @@
                 margin-left: $gap;
             }
         }
+    }
 
-        // Images beside the text
-        .ce-intext.ce-nowrap {
-            display: flex;
-            gap: $gap;
+    // Images beside the text
+    .ce-intext.ce-nowrap {
+        display: flex;
+        gap: $gap;
+        flex-flow: column;
 
-            &.ce-right {
-                .ce-bodytext {
-                    order: 1;
-                }
+        @media screen and (min-width: $text-float-breakpoint) {
+            flex-flow: row;
+        }
 
-                .ce-gallery {
-                    order: 2;
-                }
+        &.ce-right {
+            .ce-bodytext {
+                order: 1;
+            }
+
+            .ce-gallery {
+                order: 2;
             }
         }
     }

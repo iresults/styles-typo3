@@ -12,12 +12,17 @@ output_path=$(mktemp)
 
 sass --no-source-map --no-error-css tests/test.scss "$output_path"
 
-if [ -f "$output_path" ]; then
+if cmp -s "tests/expected.css" "$output_path"; then
     rm "$output_path"
+
     echo "[OK]"
     exit 0
 else
-    rm "$output_path"
+    if [ -f "$output_path" ]; then
+        git --no-pager diff --no-index -- "tests/expected.css" "$output_path"
+        rm "$output_path"
+    fi
+
     echo "[FAILED]"
     exit 1
 fi
