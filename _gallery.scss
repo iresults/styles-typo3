@@ -32,6 +32,7 @@
 
         .ce-gallery {
             display: flex;
+            gap: $gap;
             flex-flow: column;
         }
 
