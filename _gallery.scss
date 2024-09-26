@@ -30,7 +30,8 @@
             gap: $gap;
         }
 
-        .ce-gallery {
+        .ce-gallery,
+        .ce-outer > .ce-inner {
             display: flex;
             gap: $gap;
             flex-flow: column;
