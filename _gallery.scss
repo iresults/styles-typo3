@@ -1,4 +1,4 @@
-@mixin init($gap, $debug: true) {
+@mixin init($gap, $debug: false) {
     .frame-type-image,
     .frame-type-textpic {
         @if $debug {
